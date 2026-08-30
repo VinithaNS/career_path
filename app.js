@@ -32,6 +32,36 @@ app.use("/api/subcategories", require("./src/router/subCategoryRoutes"));
 app.use("/api/home-page", require("./src/router/homePageRoutes"));
 app.use("/api/careers", require("./src/router/careerRoutes"));
 app.use("/api/career-roadmaps", require("./src/router/careerRoadmapRoutes"));
+app.use("/api/eleventh-groups", require("./src/router/eleventhGroupRoutes"));
+app.use("/api/diploma-courses", require("./src/router/diplomaCourseRoutes"));
+app.use("/api/degree-courses", require("./src/router/degreeCourseRoutes"));
+app.use("/api/skills", require("./src/router/skillRoutes"));
+app.use("/api/skill-roadmaps", require("./src/router/skillRoadmapRoutes"));
+app.use("/api/certifications", require("./src/router/certificationRoutes"));
+app.use("/api/projects", require("./src/router/projectRoutes"));
+app.use("/api/government-exams", require("./src/router/governmentExamRoutes"));
+app.use(
+  "/api/exam-eligibilities",
+  require("./src/router/examEligibilityRoutes")
+);
+app.use("/api/exam-syllabus", require("./src/router/examSyllabusRoutes"));
+app.use("/api/colleges", require("./src/router/collegeRoutes"));
+app.use("/api/college-courses", require("./src/router/collegeCourseRoutes"));
+app.use("/api/college-reviews", require("./src/router/collegeReviewRoutes"));
+app.use(
+  "/api/college-comparisons",
+  require("./src/router/collegeComparisonRoutes")
+);
+app.use(
+  "/api/resource-categories",
+  require("./src/router/resourceCategoryRoutes")
+);
+app.use("/api/resources", require("./src/router/resourceRoutes"));
+app.use(
+  "/api/assessment-categories",
+  require("./src/router/assessmentCategoryRoutes")
+);
+app.use("/api/assessments", require("./src/router/assessmentRoutes"));
 const PORT = process.env.PORT || 5000;
 const MONGO_URL = process.env.MONGO_URL;
 
