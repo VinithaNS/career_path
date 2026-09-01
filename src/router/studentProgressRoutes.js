@@ -3,62 +3,70 @@ const express = require("express");
 const router = express.Router();
 
 const {
-  createNotification,
-  getAllNotifications,
-  getNotificationsByStudent,
-  getUnreadNotifications,
-  getNotificationById,
-  markAsRead,
-  markAllAsRead,
-  deleteNotification
-} = require("../controller/notificationController");
+  createStudentProgress,
+  getAllStudentProgress,
+  getStudentProgressById,
+  getProgressByStudent,
+  updateStudentProgress,
+  updateOverallProgress,
+  updateRoadmapProgress,
+  updateCurrentStage,
+  deleteStudentProgress
+} = require("../controller/studentProgressController");
 
 // =====================================================
 // CREATE
 // =====================================================
 
-router.post("/create", createNotification);
+router.post("/create", createStudentProgress);
 
 // =====================================================
 // GET ALL
 // =====================================================
 
-router.get("/all", getAllNotifications);
+router.get("/all", getAllStudentProgress);
 
 // =====================================================
-// GET STUDENT NOTIFICATIONS
+// GET BY STUDENT
+// IMPORTANT: Keep before /:id
 // =====================================================
 
-router.get("/student/:studentId", getNotificationsByStudent);
+router.get("/student/:studentId", getProgressByStudent);
 
 // =====================================================
-// GET UNREAD
+// UPDATE OVERALL PROGRESS
 // =====================================================
 
-router.get("/unread/:studentId", getUnreadNotifications);
+router.patch("/overall-progress/:id", updateOverallProgress);
 
 // =====================================================
-// MARK ALL AS READ
+// UPDATE ROADMAP PROGRESS
 // =====================================================
 
-router.patch("/read-all/:studentId", markAllAsRead);
+router.patch("/roadmap-progress/:id", updateRoadmapProgress);
 
 // =====================================================
-// MARK ONE AS READ
+// UPDATE CURRENT STAGE
 // =====================================================
 
-router.patch("/read/:id", markAsRead);
+router.patch("/stage/:id", updateCurrentStage);
 
 // =====================================================
 // GET BY ID
 // =====================================================
 
-router.get("/:id", getNotificationById);
+router.get("/:id", getStudentProgressById);
+
+// =====================================================
+// UPDATE
+// =====================================================
+
+router.put("/update/:id", updateStudentProgress);
 
 // =====================================================
 // DELETE
 // =====================================================
 
-router.delete("/delete/:id", deleteNotification);
+router.delete("/delete/:id", deleteStudentProgress);
 
 module.exports = router;

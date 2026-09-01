@@ -62,6 +62,28 @@ app.use(
   require("./src/router/assessmentCategoryRoutes")
 );
 app.use("/api/assessments", require("./src/router/assessmentRoutes"));
+app.use(
+  "/api/assessment-questions",
+  require("./src/router/assessmentQuestionRoutes")
+);
+app.use(
+  "/api/assessment-attempts",
+  require("./src/router/assessmentAttemptRoutes")
+);
+app.use(
+  "/api/assessment-results",
+  require("./src/router/assessmentResultRoutes")
+);
+app.use(
+  "/api/ai-recommendations",
+  require("./src/router/aiRecommendationRoutes")
+);
+app.use("/api/ai-conversations", require("./src/router/aiConversationRoutes"));
+app.use("/api/ai-support", require("./src/router/aiSupportRoutes"));
+app.use("/api/ai-replace", require("./src/router/aiReplaceRoutes"));
+app.use("/api/student-progress", require("./src/router/studentProgressRoutes"));
+app.use("/api/saved-careers", require("./src/router/savedCareerRoutes"));
+app.use("/api/notifications", require("./src/router/notificationRoutes"));
 const PORT = process.env.PORT || 5000;
 const MONGO_URL = process.env.MONGO_URL;
 

@@ -28,7 +28,7 @@ router.get("/:id", getAssessmentById);
 router.put("/update/:id", updateAssessment);
 
 // PUBLISH
-router.put("/publish/:id", publishAssessment);
+router.patch("/publish/:assessmentId", publishAssessment);
 
 // DELETE
 router.delete("/delete/:id", deleteAssessment);

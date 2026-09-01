@@ -1,16 +1,16 @@
-const savedCareerService = require("../services/savedCareerService");
+const aiReplaceService = require("../services/aiReplaceService");
 
 // =====================================================
-// SAVE CAREER
+// CREATE
 // =====================================================
 
-const saveCareer = async (req, res) => {
+const createAIReplace = async (req, res) => {
   try {
-    const result = await savedCareerService.saveCareer(req.body);
+    const result = await aiReplaceService.createAIReplace(req.body);
 
     return res.status(201).json({
       success: true,
-      message: "Career saved successfully",
+      message: "AI replacement record created successfully",
       data: result
     });
   } catch (error) {
@@ -22,16 +22,16 @@ const saveCareer = async (req, res) => {
 };
 
 // =====================================================
-// GET ALL SAVED CAREERS
+// GET ALL
 // =====================================================
 
-const getAllSavedCareers = async (req, res) => {
+const getAllAIReplacements = async (req, res) => {
   try {
-    const result = await savedCareerService.getAllSavedCareers();
+    const result = await aiReplaceService.getAllAIReplacements();
 
     return res.status(200).json({
       success: true,
-      message: "Saved careers fetched successfully",
+      message: "AI replacement records fetched successfully",
       count: result.length,
       data: result
     });
@@ -44,16 +44,16 @@ const getAllSavedCareers = async (req, res) => {
 };
 
 // =====================================================
-// GET SAVED CAREER BY ID
+// GET BY ID
 // =====================================================
 
-const getSavedCareerById = async (req, res) => {
+const getAIReplaceById = async (req, res) => {
   try {
-    const result = await savedCareerService.getSavedCareerById(req.params.id);
+    const result = await aiReplaceService.getAIReplaceById(req.params.id);
 
     return res.status(200).json({
       success: true,
-      message: "Saved career fetched successfully",
+      message: "AI replacement record fetched successfully",
       data: result
     });
   } catch (error) {
@@ -65,23 +65,21 @@ const getSavedCareerById = async (req, res) => {
 };
 
 // =====================================================
-// GET BY STUDENT
+// GET BY SECTOR
 // =====================================================
 
-const getSavedCareersByStudent = async (req, res) => {
+const getBySector = async (req, res) => {
   try {
-    const result = await savedCareerService.getSavedCareersByStudent(
-      req.params.studentId
-    );
+    const result = await aiReplaceService.getBySector(req.params.sector);
 
     return res.status(200).json({
       success: true,
-      message: "Student saved careers fetched successfully",
+      message: "AI replacement records fetched by sector",
       count: result.length,
       data: result
     });
   } catch (error) {
-    return res.status(404).json({
+    return res.status(500).json({
       success: false,
       message: error.message
     });
@@ -89,19 +87,39 @@ const getSavedCareersByStudent = async (req, res) => {
 };
 
 // =====================================================
-// CHECK SAVED CAREER
+// GET BY DOMAIN
 // =====================================================
 
-const checkSavedCareer = async (req, res) => {
+const getByDomain = async (req, res) => {
   try {
-    const result = await savedCareerService.checkSavedCareer(
-      req.params.studentId,
-      req.params.careerId
-    );
+    const result = await aiReplaceService.getByDomain(req.params.domain);
 
     return res.status(200).json({
       success: true,
-      message: "Saved career status fetched successfully",
+      message: "AI replacement records fetched by domain",
+      count: result.length,
+      data: result
+    });
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: error.message
+    });
+  }
+};
+
+// =====================================================
+// HIGH AUTOMATION
+// =====================================================
+
+const getHighAutomationJobs = async (req, res) => {
+  try {
+    const result = await aiReplaceService.getHighAutomationJobs();
+
+    return res.status(200).json({
+      success: true,
+      message: "High automation jobs fetched successfully",
+      count: result.length,
       data: result
     });
   } catch (error) {
@@ -116,16 +134,16 @@ const checkSavedCareer = async (req, res) => {
 // UPDATE
 // =====================================================
 
-const updateSavedCareer = async (req, res) => {
+const updateAIReplace = async (req, res) => {
   try {
-    const result = await savedCareerService.updateSavedCareer(
+    const result = await aiReplaceService.updateAIReplace(
       req.params.id,
       req.body
     );
 
     return res.status(200).json({
       success: true,
-      message: "Saved career updated successfully",
+      message: "AI replacement record updated successfully",
       data: result
     });
   } catch (error) {
@@ -137,39 +155,16 @@ const updateSavedCareer = async (req, res) => {
 };
 
 // =====================================================
-// REMOVE BY ID
+// DELETE
 // =====================================================
 
-const removeSavedCareer = async (req, res) => {
+const deleteAIReplace = async (req, res) => {
   try {
-    const result = await savedCareerService.removeSavedCareer(req.params.id);
+    await aiReplaceService.deleteAIReplace(req.params.id);
 
     return res.status(200).json({
       success: true,
-      message: result.message
-    });
-  } catch (error) {
-    return res.status(404).json({
-      success: false,
-      message: error.message
-    });
-  }
-};
-
-// =====================================================
-// REMOVE BY STUDENT + CAREER
-// =====================================================
-
-const removeCareerForStudent = async (req, res) => {
-  try {
-    const result = await savedCareerService.removeCareerForStudent(
-      req.params.studentId,
-      req.params.careerId
-    );
-
-    return res.status(200).json({
-      success: true,
-      message: result.message
+      message: "AI replacement record deleted successfully"
     });
   } catch (error) {
     return res.status(404).json({
@@ -180,12 +175,12 @@ const removeCareerForStudent = async (req, res) => {
 };
 
 module.exports = {
-  saveCareer,
-  getAllSavedCareers,
-  getSavedCareerById,
-  getSavedCareersByStudent,
-  checkSavedCareer,
-  updateSavedCareer,
-  removeSavedCareer,
-  removeCareerForStudent
+  createAIReplace,
+  getAllAIReplacements,
+  getAIReplaceById,
+  getBySector,
+  getByDomain,
+  getHighAutomationJobs,
+  updateAIReplace,
+  deleteAIReplace
 };

@@ -3,55 +3,62 @@ const express = require("express");
 const router = express.Router();
 
 const {
-  startAssessment,
-  getAttemptById,
-  getStudentAttempts,
-  getAssessmentAttempts,
-  submitAnswer,
-  completeAttempt,
-  abandonAttempt
-} = require("../controller/assessmentAttemptController");
+  createAIReplace,
+  getAllAIReplacements,
+  getAIReplaceById,
+  getBySector,
+  getByDomain,
+  getHighAutomationJobs,
+  updateAIReplace,
+  deleteAIReplace
+} = require("../controller/aiReplaceController");
 
 // =====================================================
-// START ASSESSMENT
+// CREATE
 // =====================================================
 
-router.post("/start", startAssessment);
+router.post("/create", createAIReplace);
 
 // =====================================================
-// GET STUDENT ATTEMPTS
+// GET ALL
 // =====================================================
 
-router.get("/student/:studentId", getStudentAttempts);
+router.get("/all", getAllAIReplacements);
 
 // =====================================================
-// GET ASSESSMENT ATTEMPTS
+// HIGH AUTOMATION
 // =====================================================
 
-router.get("/assessment/:assessmentId", getAssessmentAttempts);
+router.get("/high-automation", getHighAutomationJobs);
 
 // =====================================================
-// SUBMIT ANSWER
+// GET BY SECTOR
 // =====================================================
 
-router.post("/answer/:id", submitAnswer);
+router.get("/sector/:sector", getBySector);
 
 // =====================================================
-// COMPLETE
+// GET BY DOMAIN
 // =====================================================
 
-router.post("/complete/:id", completeAttempt);
-
-// =====================================================
-// ABANDON
-// =====================================================
-
-router.post("/abandon/:id", abandonAttempt);
+router.get("/domain/:domain", getByDomain);
 
 // =====================================================
 // GET BY ID
 // =====================================================
 
-router.get("/:id", getAttemptById);
+router.get("/:id", getAIReplaceById);
+
+// =====================================================
+// UPDATE
+// =====================================================
+
+router.put("/update/:id", updateAIReplace);
+
+// =====================================================
+// DELETE
+// =====================================================
+
+router.delete("/delete/:id", deleteAIReplace);
 
 module.exports = router;
