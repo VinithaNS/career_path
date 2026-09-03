@@ -134,7 +134,16 @@ const deleteAssessment = async (req, res) => {
 
 const publishAssessment = async (req, res) => {
   try {
-    const assessment = await assessmentService.publishAssessment(req.params.id);
+    const { assessmentId } = req.params;
+
+    if (!assessmentId) {
+      return res.status(400).json({
+        success: false,
+        message: "assessmentId is required"
+      });
+    }
+
+    const assessment = await assessmentService.publishAssessment(assessmentId);
 
     return res.status(200).json({
       success: true,

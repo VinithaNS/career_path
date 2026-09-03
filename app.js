@@ -62,6 +62,60 @@ app.use(
   require("./src/router/assessmentCategoryRoutes")
 );
 app.use("/api/assessments", require("./src/router/assessmentRoutes"));
+app.use(
+  "/api/assessment-questions",
+  require("./src/router/assessmentQuestionRoutes")
+);
+app.use(
+  "/api/assessment-attempts",
+  require("./src/router/assessmentAttemptRoutes")
+);
+app.use(
+  "/api/assessment-results",
+  require("./src/router/assessmentResultRoutes")
+);
+app.use(
+  "/api/ai-recommendations",
+  require("./src/router/aiRecommendationRoutes")
+);
+app.use("/api/ai-conversations", require("./src/router/aiConversationRoutes"));
+app.use("/api/ai-support", require("./src/router/aiSupportRoutes"));
+app.use("/api/ai-replace", require("./src/router/aiReplaceRoutes"));
+app.use("/api/student-progress", require("./src/router/studentProgressRoutes"));
+app.use("/api/saved-careers", require("./src/router/savedCareerRoutes"));
+app.use("/api/notifications", require("./src/router/notificationRoutes"));
+app.use("/api/subjects", require("./src/router/subjectRoutes"));
+app.use("/api/group-subjects", require("./src/router/groupSubjectRoutes"));
+app.use("/api/education-paths", require("./src/router/educationPathRoutes"));
+app.use(
+  "/api/career-eligibilities",
+  require("./src/router/careerEligibilityRoutes")
+);
+app.use("/api/career-skills", require("./src/router/careerSkillRoutes"));
+app.use(
+  "/api/student-interests",
+  require("./src/router/studentInterestRoutes")
+);
+app.use(
+  "/api/career-recommendations",
+  require("./src/router/careerRecommendationRoutes")
+);
+app.use(
+  "/api/college-admissions",
+  require("./src/router/collegeAdmissionRoutes")
+);
+app.use(
+  "/api/college-year-roadmaps",
+  require("./src/router/collegeYearRoadmapRoutes")
+);
+app.use(
+  "/api/student-course-progress",
+  require("./src/router/studentCourseProgressRoutes")
+);
+app.use(
+  "/api/student-roadmap-progress",
+  require("./src/router/studentRoadmapProgressRoutes")
+);
 const PORT = process.env.PORT || 5000;
 const MONGO_URL = process.env.MONGO_URL;
 
