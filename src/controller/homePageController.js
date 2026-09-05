@@ -1,120 +1,38 @@
-const homePageService = require("../services/homePageService");
+const Career = require("../model/careerModel");
+const College = require("../model/collegeModel");
+const GovernmentExam = require("../model/governmentExamModel");
 
-// =====================================================
-// CREATE HOME PAGE
-// =====================================================
-
-const createHomePage = async (req, res) => {
+const getHomeData = async (req, res) => {
   try {
-    const homePage = await homePageService.createHomePage(req.body);
+    const [careerCount, collegeCount, examCount] = await Promise.all([
+      Career.countDocuments(),
+      College.countDocuments(),
+      GovernmentExam.countDocuments()
+    ]);
 
-    return res.status(201).json({
+    const careers = await Career.find({});
+
+    res.status(200).json({
       success: true,
-      message: "Home page created successfully",
-      data: homePage
+      data: {
+        stats: {
+          careers: careerCount,
+          colleges: collegeCount,
+          exams: examCount
+        },
+        careers
+      }
     });
   } catch (error) {
-    return res.status(400).json({
+    console.error("Home API Error:", error);
+
+    res.status(500).json({
       success: false,
-      message: error.message
+      message: "Failed to load home page data"
     });
   }
 };
-
-// =====================================================
-// GET HOME PAGE
-// =====================================================
-
-const getHomePage = async (req, res) => {
-  try {
-    const homePage = await homePageService.getHomePage();
-
-    return res.status(200).json({
-      success: true,
-      message: "Home page fetched successfully",
-      data: homePage
-    });
-  } catch (error) {
-    return res.status(404).json({
-      success: false,
-      message: error.message
-    });
-  }
-};
-
-// =====================================================
-// GET HOME PAGE BY ID
-// =====================================================
-
-const getHomePageById = async (req, res) => {
-  try {
-    const homePage = await homePageService.getHomePageById(req.params.id);
-
-    return res.status(200).json({
-      success: true,
-      message: "Home page fetched successfully",
-      data: homePage
-    });
-  } catch (error) {
-    return res.status(404).json({
-      success: false,
-      message: error.message
-    });
-  }
-};
-
-// =====================================================
-// UPDATE HOME PAGE
-// =====================================================
-
-const updateHomePage = async (req, res) => {
-  try {
-    const homePage = await homePageService.updateHomePage(
-      req.params.id,
-      req.body
-    );
-
-    return res.status(200).json({
-      success: true,
-      message: "Home page updated successfully",
-      data: homePage
-    });
-  } catch (error) {
-    return res.status(400).json({
-      success: false,
-      message: error.message
-    });
-  }
-};
-
-// =====================================================
-// DELETE HOME PAGE
-// =====================================================
-
-const deleteHomePage = async (req, res) => {
-  try {
-    await homePageService.deleteHomePage(req.params.id);
-
-    return res.status(200).json({
-      success: true,
-      message: "Home page deleted successfully"
-    });
-  } catch (error) {
-    return res.status(404).json({
-      success: false,
-      message: error.message
-    });
-  }
-};
-
-// =====================================================
-// EXPORT
-// =====================================================
 
 module.exports = {
-  createHomePage,
-  getHomePage,
-  getHomePageById,
-  updateHomePage,
-  deleteHomePage
+  getHomeData
 };
