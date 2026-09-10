@@ -32,6 +32,12 @@ const studentSchema = new mongoose.Schema(
       default: null
     },
 
+    address: {
+      type: String,
+      trim: true,
+      default: ""
+    },
+
     city: {
       type: String,
       trim: true,
