@@ -4,6 +4,8 @@ const Student = require("../model/studentModel");
 
 const AIRecommendation = require("../model/aiRecommendationModel");
 
+const { getAIReply } = require("./geminiService");
+
 // =====================================================
 // CREATE CONVERSATION
 // =====================================================
@@ -62,7 +64,6 @@ const sendMessage = async (conversationId, studentId, message) => {
       throw new Error("AI conversation not found");
     }
 
-    // Check ownership
     if (conversation.student.toString() !== studentId.toString()) {
       throw new Error("You are not authorized to access this conversation");
     }
@@ -75,28 +76,44 @@ const sendMessage = async (conversationId, studentId, message) => {
       throw new Error("Message is required");
     }
 
-    // -------------------------------------------------
-    // Add User Message
-    // -------------------------------------------------
+    const trimmedMessage = message.trim();
+
+    // ============================================
+    // SEND PREVIOUS HISTORY TO GEMINI
+    // ============================================
+
+    const historyForAI = conversation.messages.map((m) => ({
+      role: m.role,
+      message: m.message
+    }));
+
+    let aiResponse;
+
+    try {
+      aiResponse = await getAIReply(historyForAI, trimmedMessage);
+    } catch (error) {
+      console.error("Gemini response error:", error.message);
+
+      aiResponse =
+        "I'm having trouble responding right now. Please try again in a moment.";
+    }
+
+    // ============================================
+    // SAVE USER MESSAGE
+    // ============================================
 
     conversation.messages.push({
       role: "user",
-      message: message.trim(),
-      timestamp: new Date()
+      message: trimmedMessage
     });
 
-    // -------------------------------------------------
-    // Temporary AI Response
-    // -------------------------------------------------
-    // Actual AI integration can be added here later.
-    // -------------------------------------------------
-
-    const aiResponse = generateCareerResponse(message);
+    // ============================================
+    // SAVE AI MESSAGE
+    // ============================================
 
     conversation.messages.push({
       role: "assistant",
-      message: aiResponse,
-      timestamp: new Date()
+      message: aiResponse
     });
 
     await conversation.save();
@@ -108,33 +125,6 @@ const sendMessage = async (conversationId, studentId, message) => {
     throw new Error(error.message);
   }
 };
-
-// =====================================================
-// SIMPLE AI RESPONSE
-// =====================================================
-
-const generateCareerResponse = (message) => {
-  const text = message.toLowerCase();
-
-  if (text.includes("career")) {
-    return "Based on your assessment and interests, you should explore careers that match your strengths and skills. Your assessment result can be used to identify the most suitable career paths.";
-  }
-
-  if (text.includes("skill")) {
-    return "You should focus on technical skills, communication, problem solving and practical project experience related to your selected career.";
-  }
-
-  if (text.includes("developer") || text.includes("programming")) {
-    return "If you are interested in programming, Software Development, Web Development and Application Development can be suitable career paths.";
-  }
-
-  if (text.includes("data")) {
-    return "If you enjoy mathematics, analysis and working with information, Data Analyst and Data-related careers may be suitable options.";
-  }
-
-  return "I can help you with career selection, required skills, learning paths, courses and career opportunities. Please ask a specific career-related question.";
-};
-
 // =====================================================
 // GET CONVERSATION BY ID
 // =====================================================

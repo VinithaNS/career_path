@@ -36,6 +36,8 @@ const registerUser = async (data) => {
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
+      mobile: user.mobile,
+      avatarUrl: user.avatarUrl,
       role: user.role
     },
     token
@@ -71,13 +73,69 @@ const loginUser = async (email, password) => {
       firstName: user.firstName,
       lastName: user.lastName,
       email: user.email,
+      mobile: user.mobile,
+      avatarUrl: user.avatarUrl,
       role: user.role
     },
     token
   };
 };
 
+const getCurrentUser = async (userId) => {
+  const user = await User.findById(userId);
+
+  if (!user) {
+    throw new Error("User not found");
+  }
+
+  return user;
+};
+
+const updateUserProfile = async (userId, data) => {
+  const { firstName, lastName, mobile, email } = data;
+
+  if (email) {
+    const existing = await User.findOne({
+      email,
+      _id: { $ne: userId }
+    });
+
+    if (existing) {
+      throw new Error("Email already in use by another account");
+    }
+  }
+
+  const user = await User.findByIdAndUpdate(
+    userId,
+    { firstName, lastName, mobile, email },
+    { new: true, runValidators: true }
+  );
+
+  if (!user) {
+    throw new Error("User not found");
+  }
+
+  return user;
+};
+
+const updateAvatar = async (userId, avatarUrl) => {
+  const user = await User.findByIdAndUpdate(
+    userId,
+    { avatarUrl },
+    { new: true }
+  );
+
+  if (!user) {
+    throw new Error("User not found");
+  }
+
+  return user;
+};
+
 module.exports = {
   registerUser,
-  loginUser
+  loginUser,
+  getCurrentUser,
+  updateUserProfile,
+  updateAvatar
 };
