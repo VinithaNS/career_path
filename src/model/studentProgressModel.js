@@ -2,176 +2,89 @@ const mongoose = require("mongoose");
 
 const studentProgressSchema = new mongoose.Schema(
   {
-    // ============================================
+    // =========================
     // STUDENT
-    // ============================================
-
+    // =========================
     student: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Student",
       required: true
     },
 
-    // ============================================
+    // =========================
     // CAREER
-    // ============================================
-
-    selectedCareer: {
+    // =========================
+    career: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "Career",
-      default: null
+      required: true
     },
 
-    // ============================================
-    // ASSESSMENT PROGRESS
-    // ============================================
-
-    assessmentCompleted: {
-      type: Boolean,
-      default: false
-    },
-
-    assessmentAttempt: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "AssessmentAttempt",
-      default: null
-    },
-
-    assessmentResult: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "AssessmentResult",
-      default: null
-    },
-
-    // ============================================
+    // =========================
     // CAREER ROADMAP
-    // ============================================
-
-    roadmap: {
+    // =========================
+    careerRoadmap: {
       type: mongoose.Schema.Types.ObjectId,
       ref: "CareerRoadmap",
       default: null
     },
 
-    roadmapProgress: {
+    // =========================
+    // CURRENT STEP
+    // =========================
+    currentStep: {
       type: Number,
+      default: 0,
+      min: 0
+    },
+
+    totalSteps: {
+      type: Number,
+      default: 0,
+      min: 0
+    },
+
+    // =========================
+    // PROGRESS
+    // =========================
+    progressPercentage: {
+      type: Number,
+      default: 0,
       min: 0,
-      max: 100,
-      default: 0
+      max: 100
     },
 
-    // ============================================
-    // COURSE PROGRESS
-    // ============================================
-
-    coursesStarted: {
+    completedSteps: {
       type: Number,
       default: 0,
       min: 0
     },
 
-    coursesCompleted: {
-      type: Number,
-      default: 0,
-      min: 0
-    },
-
-    // ============================================
-    // PROJECT PROGRESS
-    // ============================================
-
-    projectsStarted: {
-      type: Number,
-      default: 0,
-      min: 0
-    },
-
-    projectsCompleted: {
-      type: Number,
-      default: 0,
-      min: 0
-    },
-
-    // ============================================
-    // CERTIFICATION PROGRESS
-    // ============================================
-
-    certificationsCompleted: {
-      type: Number,
-      default: 0,
-      min: 0
-    },
-
-    // ============================================
-    // SKILLS
-    // ============================================
-
-    skillsCompleted: [
-      {
-        type: String,
-        trim: true
-      }
-    ],
-
-    skillsInProgress: [
-      {
-        type: String,
-        trim: true
-      }
-    ],
-
-    // ============================================
-    // OVERALL PROGRESS
-    // ============================================
-
-    overallProgress: {
-      type: Number,
-      min: 0,
-      max: 100,
-      default: 0
-    },
-
-    // ============================================
-    // CURRENT STAGE
-    // ============================================
-
-    currentStage: {
+    // =========================
+    // STATUS
+    // =========================
+    status: {
       type: String,
-      enum: [
-        "Not Started",
-        "Assessment",
-        "Career Selection",
-        "Roadmap",
-        "Learning",
-        "Projects",
-        "Certification",
-        "Completed"
-      ],
+      enum: ["Not Started", "In Progress", "Completed"],
       default: "Not Started"
     },
 
-    // ============================================
-    // LAST ACTIVITY
-    // ============================================
-
-    lastActivity: {
-      type: String,
-      default: ""
+    completed: {
+      type: Boolean,
+      default: false
     },
 
-    lastActivityDate: {
+    completedAt: {
+      type: Date,
+      default: null
+    },
+
+    // =========================
+    // LAST ACCESSED
+    // =========================
+    lastAccessedAt: {
       type: Date,
       default: Date.now
-    },
-
-    // ============================================
-    // STATUS
-    // ============================================
-
-    status: {
-      type: String,
-      enum: ["Active", "Completed", "Paused"],
-      default: "Active"
     }
   },
   {
@@ -179,33 +92,18 @@ const studentProgressSchema = new mongoose.Schema(
   }
 );
 
-// ============================================
-// INDEX
-// ============================================
-
+// ======================================
+// COMPOUND INDEX
+// ======================================
+// One student's progress for one career
 studentProgressSchema.index({
-  student: 1
+  student: 1,
+  career: 1
 });
 
-studentProgressSchema.index({
-  selectedCareer: 1
-});
-
-studentProgressSchema.index({
-  currentStage: 1
-});
-
-// ============================================
-// ONE PROGRESS RECORD PER STUDENT
-// ============================================
-
-studentProgressSchema.index(
-  {
-    student: 1
-  },
-  {
-    unique: true
-  }
-);
-
-module.exports = mongoose.model("StudentProgress", studentProgressSchema);
+// ======================================
+// MODEL
+// ======================================
+module.exports =
+  mongoose.models.StudentProgress ||
+  mongoose.model("StudentProgress", studentProgressSchema);
