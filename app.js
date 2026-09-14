@@ -116,6 +116,8 @@ app.use(
   "/api/student-roadmap-progress",
   require("./src/router/studentRoadmapProgressRoutes")
 );
+app.use("/api/departments", require("./src/router/departmentRoutes"));
+app.use("/api", require("./src/router/courseVideoRoutes"));
 const PORT = process.env.PORT || 5000;
 const MONGO_URL = process.env.MONGO_URL;
 
