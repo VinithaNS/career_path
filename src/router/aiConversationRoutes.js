@@ -1,5 +1,4 @@
 const express = require("express");
-
 const router = express.Router();
 
 const {
@@ -13,31 +12,26 @@ const {
 // =====================================================
 // CREATE CONVERSATION
 // =====================================================
-
 router.post("/create", createConversation);
-
-// =====================================================
-// GET STUDENT CONVERSATIONS
-// =====================================================
-
-router.get("/student/:studentId", getStudentConversations);
 
 // =====================================================
 // SEND MESSAGE
 // =====================================================
+router.post("/:id/send", sendMessage);
 
-router.post("/:id/message", sendMessage);
+// =====================================================
+// GET STUDENT CONVERSATIONS
+// =====================================================
+router.get("/student/:studentId", getStudentConversations);
+
+// =====================================================
+// GET CONVERSATION BY ID
+// =====================================================
+router.get("/:id", getConversationById);
 
 // =====================================================
 // CLOSE CONVERSATION
 // =====================================================
-
-router.patch("/:id/close", closeConversation);
-
-// =====================================================
-// GET CONVERSATION
-// =====================================================
-
-router.get("/:id", getConversationById);
+router.put("/:id/close", closeConversation);
 
 module.exports = router;
