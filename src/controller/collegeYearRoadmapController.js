@@ -1,4 +1,4 @@
-const CollegeYearRoadmap = require("../model/collegeYearRoadmapModel");
+const CollegeYearRoadmap = require("../model/college/collegeYearRoadmapModel");
 
 // CREATE
 exports.createCollegeYearRoadmap = async (req, res) => {

@@ -1,4 +1,4 @@
-const EleventhGroup = require("../model/eleventhGroupModel");
+const EleventhGroup = require("../model/core/eleventhGroupModel");
 
 // =====================================================
 // CREATE ELEVENTH GROUP

@@ -1,8 +1,8 @@
-const AIConversation = require("../model/aiConversationModel");
+const AIConversation = require("../model/ai/aiConversationModel");
 
-const Student = require("../model/studentModel");
+const Student = require("../model/user/studentModel");
 
-const AIRecommendation = require("../model/aiRecommendationModel");
+const AIRecommendation = require("../model/ai/aiRecommendationModel");
 
 const { getAIReply } = require("../services/aiService");
 

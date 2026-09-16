@@ -1,10 +1,10 @@
-const StudentInterest = require("../model/studentInterestModel");
+const StudentInterest = require("../model/core/studentInterestModel");
 
-const CareerEligibility = require("../model/careerEligibilityModel.js");
+const CareerEligibility = require("../model/career/careerEligibilityModel.js");
 
-const CareerSkill = require("../model/careerSkillModel.js");
+const CareerSkill = require("../model/career/careerSkillModel.js");
 
-const CareerRecommendation = require("../model/careerRecommendationModel.js");
+const CareerRecommendation = require("../model/career/careerRecommendationModel.js");
 
 // Generate recommendations
 exports.generateRecommendations = async (studentId) => {

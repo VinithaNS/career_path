@@ -1,6 +1,6 @@
-const CollegeComparison = require("../model/collegeComparisonModel");
-const College = require("../model/collegeModel");
-const CollegeCourse = require("../model/collegeCourseModel");
+const CollegeComparison = require("../model/college/collegeComparisonModel");
+const College = require("../model/college/collegeModel");
+const CollegeCourse = require("../model/college/collegeCourseModel");
 
 // =====================================================
 // CREATE COMPARISON

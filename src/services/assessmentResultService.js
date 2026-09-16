@@ -1,10 +1,10 @@
-const AssessmentResult = require("../model/assessmentResultModel");
+const AssessmentResult = require("../model/assessment/assessmentResultModel");
 
-const AssessmentAttempt = require("../model/assessmentAttemptModel");
+const AssessmentAttempt = require("../model/assessment/assessmentAttemptModel");
 
-const Assessment = require("../model/assessmentModel");
+const Assessment = require("../model/assessment/assessmentModel");
 
-const Student = require("../model/studentModel");
+const Student = require("../model/user/studentModel");
 
 // =====================================================
 // CREATE RESULT FROM COMPLETED ATTEMPT

@@ -1,6 +1,6 @@
-const Resource = require("../model/resourceModel");
+const Resource = require("../model/resource/resourceModel");
 
-const ResourceCategory = require("../model/resourceCategoryModel");
+const ResourceCategory = require("../model/resource/resourceCategoryModel");
 
 // =====================================================
 // CREATE RESOURCE

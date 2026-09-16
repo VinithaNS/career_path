@@ -1,6 +1,6 @@
-const Student = require("../model/studentModel");
+const Student = require("../model/user/studentModel");
 
-const User = require("../model/userModel");
+const User = require("../model/user/userModel");
 
 // ----------------------------------
 // CREATE STUDENT PROFILE

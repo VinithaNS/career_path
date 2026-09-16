@@ -1,5 +1,5 @@
-const CollegeCourse = require("../model/collegeCourseModel");
-const College = require("../model/collegeModel");
+const CollegeCourse = require("../model/college/collegeCourseModel");
+const College = require("../model/college/collegeModel");
 
 // =====================================================
 // CREATE COLLEGE COURSE

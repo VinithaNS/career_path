@@ -1,4 +1,4 @@
-const DegreeCourse = require("../model/degreeCourseModel");
+const DegreeCourse = require("../model/core/degreeCourseModel");
 
 // =====================================================
 // CREATE DEGREE COURSE

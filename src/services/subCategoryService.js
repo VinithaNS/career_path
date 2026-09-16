@@ -1,6 +1,6 @@
-const SubCategory = require("../model/subCategoryModel.js");
+const SubCategory = require("../model/core/subCategoryModel");
 
-const Category = require("../model/categoryModel.js");
+const Category = require("../model/core/categoryModel");
 
 // CREATE
 

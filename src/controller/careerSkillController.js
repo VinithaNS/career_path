@@ -1,4 +1,4 @@
-const CareerSkill = require("../model/careerSkillModel");
+const CareerSkill = require("../model/career/careerSkillModel");
 
 // CREATE
 exports.createCareerSkill = async (req, res) => {

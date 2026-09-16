@@ -1,5 +1,5 @@
-const Counselor = require("../model/counselorModel");
-const User = require("../model/userModel");
+const Counselor = require("../model/user/counselorModel");
+const User = require("../model/user/userModel");
 
 // CREATE COUNSELOR PROFILE
 const createCounselorProfile = async (userId, data) => {

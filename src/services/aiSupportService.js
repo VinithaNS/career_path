@@ -1,8 +1,8 @@
-const AISupport = require("../model/AISupportModel");
+const AISupport = require("../model/ai/AISupportModel");
 
-const Student = require("../model/studentModel");
+const Student = require("../model/user/studentModel");
 
-const AIConversation = require("../model/aiConversationModel");
+const AIConversation = require("../model/ai/aiConversationModel");
 
 // =====================================================
 // CREATE SUPPORT REQUEST

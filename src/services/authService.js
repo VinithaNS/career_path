@@ -1,4 +1,4 @@
-const User = require("../model/userModel");
+const User = require("../model/user/userModel");
 
 const { hashPassword, comparePassword } = require("./passwordService");
 

@@ -1,4 +1,4 @@
-const StudentCourseProgress = require("../model/studentCourseProgressModel");
+const StudentCourseProgress = require("../model/core/studentCourseProgressModel");
 
 // CREATE
 exports.createCourseProgress = async (req, res) => {

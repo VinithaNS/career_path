@@ -1,4 +1,4 @@
-const Department = require("../model/departmentModel");
+const Department = require("../model/core/departmentModel");
 
 exports.fetchAllDepartments = async () => {
   return Department.find({ isActive: true })

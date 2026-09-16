@@ -1,5 +1,5 @@
-const Teacher = require("../model/teacherModel");
-const User = require("../model/userModel");
+const Teacher = require("../model/user/teacherModel");
+const User = require("../model/user/userModel");
 
 const createTeacherProfile = async (userId, data) => {
   const existingUser = await User.findById(userId);

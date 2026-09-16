@@ -1,4 +1,4 @@
-const Project = require("../model/projectModel");
+const Project = require("../model/core/projectModel");
 
 // =====================================================
 // CREATE PROJECT

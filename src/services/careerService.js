@@ -1,4 +1,4 @@
-const Career = require("../model/careerModel");
+const Career = require("../model/career/careerModel");
 
 // =====================================================
 // CREATE CAREER

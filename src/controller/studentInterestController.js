@@ -1,4 +1,4 @@
-const StudentInterest = require("../model/studentInterestModel");
+const StudentInterest = require("../model/core/studentInterestModel");
 
 // CREATE / UPDATE INTEREST
 exports.createOrUpdateInterest = async (req, res) => {

@@ -1,4 +1,4 @@
-const SkillRoadmap = require("../model/skillRoadmapModel");
+const SkillRoadmap = require("../model/skill/skillRoadmapModel");
 
 // =====================================================
 // CREATE SKILL ROADMAP

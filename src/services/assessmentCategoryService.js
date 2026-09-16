@@ -1,4 +1,4 @@
-const AssessmentCategory = require("../model/assessmentCategoryModel");
+const AssessmentCategory = require("../model/assessment/assessmentCategoryModel");
 
 // =====================================================
 // CREATE CATEGORY

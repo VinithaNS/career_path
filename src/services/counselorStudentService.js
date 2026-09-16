@@ -1,6 +1,6 @@
-const Counselor = require("../model/counselorModel");
-const Student = require("../model/studentModel");
-const CounselorStudent = require("../model/counselorStudentModel");
+const Counselor = require("../model/user/counselorModel");
+const Student = require("../model/user/studentModel");
+const CounselorStudent = require("../model/user/counselorStudentModel");
 
 // ASSIGN STUDENT
 const assignStudent = async (userId, data) => {

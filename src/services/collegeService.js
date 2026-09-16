@@ -1,4 +1,4 @@
-const College = require("../model/collegeModel");
+const College = require("../model/college/collegeModel");
 
 // =====================================================
 // CREATE COLLEGE

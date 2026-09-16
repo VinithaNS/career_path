@@ -1,4 +1,4 @@
-const DiplomaCourse = require("../model/diplomaCourseModel");
+const DiplomaCourse = require("../model/core/diplomaCourseModel");
 
 // =====================================================
 // CREATE DIPLOMA COURSE

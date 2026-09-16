@@ -1,4 +1,4 @@
-const CareerEligibility = require("../model/careerEligibilityModel");
+const CareerEligibility = require("../model/career/careerEligibilityModel");
 
 // CREATE
 exports.createCareerEligibility = async (req, res) => {
