@@ -1,7 +1,7 @@
 // service/assessmentService.js
 
-const Assessment = require("../model/assessmentModel");
-const AssessmentCategory = require("../model/assessmentCategoryModel");
+const Assessment = require("../model/assessment/assessmentModel");
+const AssessmentCategory = require("../model/assessment/assessmentCategoryModel");
 
 const createAssessment = async (data) => {
   const category = await AssessmentCategory.findById(data.category);

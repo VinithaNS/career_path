@@ -1,4 +1,4 @@
-const GroupSubject = require("../model/groupSubjectModel");
+const GroupSubject = require("../model/core/groupSubjectModel");
 
 exports.createGroupSubject = async (req, res) => {
   try {

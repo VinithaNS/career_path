@@ -1,4 +1,4 @@
-const EducationPath = require("../model/educationPathModel");
+const EducationPath = require("../model/core/educationPathModel");
 
 exports.createEducationPath = async (req, res) => {
   try {

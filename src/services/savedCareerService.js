@@ -1,8 +1,8 @@
-const SavedCareer = require("../model/savedCareerModel");
+const SavedCareer = require("../model/career/savedCareerModel");
 
-const Student = require("../model/studentModel");
+const Student = require("../model/user/studentModel");
 
-const Career = require("../model/careerModel");
+const Career = require("../model/career/careerModel");
 
 // =====================================================
 // SAVE CAREER

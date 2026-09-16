@@ -1,4 +1,4 @@
-const ExamEligibility = require("../model/examEligibilityModel");
+const ExamEligibility = require("../model/exam/examEligibilityModel");
 
 // =====================================================
 // CREATE EXAM ELIGIBILITY

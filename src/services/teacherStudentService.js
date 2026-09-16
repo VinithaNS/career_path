@@ -1,6 +1,6 @@
-const Teacher = require("../model/teacherModel");
-const Student = require("../model/studentModel");
-const TeacherStudent = require("../model/teacherStudentModel");
+const Teacher = require("../model/user/teacherModel");
+const Student = require("../model/user/studentModel");
+const TeacherStudent = require("../model/user/teacherStudentModel");
 
 // ASSIGN STUDENT
 const assignStudent = async (userId, data) => {

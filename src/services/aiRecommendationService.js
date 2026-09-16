@@ -1,10 +1,10 @@
-const AIRecommendation = require("../model/aiRecommendationModel");
+const AIRecommendation = require("../model/ai/aiRecommendationModel");
 
-const AssessmentResult = require("../model/assessmentResultModel");
+const AssessmentResult = require("../model/assessment/assessmentResultModel");
 
-const Career = require("../model/careerModel");
+const Career = require("../model/career/careerModel");
 
-const Student = require("../model/studentModel");
+const Student = require("../model/user/studentModel");
 
 // =====================================================
 // CREATE AI RECOMMENDATION

@@ -1,10 +1,10 @@
-const AIConversation = require("../model/aiConversationModel");
+const AIConversation = require("../model/ai/aiConversationModel");
 
-const Student = require("../model/studentModel");
+const Student = require("../model/user/studentModel");
 
-const AIRecommendation = require("../model/aiRecommendationModel");
+const AIRecommendation = require("../model/ai/aiRecommendationModel");
 
-const { getAIReply } = require("./geminiService");
+const { getAIReply } = require("../services/aiService");
 
 // =====================================================
 // CREATE CONVERSATION
@@ -93,6 +93,7 @@ const sendMessage = async (conversationId, studentId, message) => {
       aiResponse = await getAIReply(historyForAI, trimmedMessage);
     } catch (error) {
       console.error("Gemini response error:", error.message);
+      console.error("FULL ERROR STACK:", error);
 
       aiResponse =
         "I'm having trouble responding right now. Please try again in a moment.";

@@ -1,6 +1,6 @@
-const Notification = require("../model/notificationModel");
+const Notification = require("../model/core/notificationModel");
 
-const Student = require("../model/studentModel");
+const Student = require("../model/user/studentModel");
 
 // =====================================================
 // CREATE NOTIFICATION

@@ -1,4 +1,4 @@
-const CareerRecommendation = require("../model/careerRecommendationModel.js");
+const CareerRecommendation = require("../model/career/careerRecommendationModel.js");
 
 const {
   generateRecommendations

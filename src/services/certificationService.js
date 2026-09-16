@@ -1,4 +1,4 @@
-const Certification = require("../model/certificationModel");
+const Certification = require("../model/core/certificationModel");
 
 // =====================================================
 // CREATE CERTIFICATION

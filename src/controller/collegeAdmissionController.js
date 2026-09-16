@@ -1,4 +1,4 @@
-const CollegeAdmission = require("../model/collegeAdmissionModel");
+const CollegeAdmission = require("../model/college/collegeAdmissionModel");
 
 // CREATE
 exports.createCollegeAdmission = async (req, res) => {

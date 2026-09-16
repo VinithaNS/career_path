@@ -1,5 +1,5 @@
-const CareerRoadmap = require("../model/careerRoadmapModel");
-const Career = require("../model/careerModel");
+const CareerRoadmap = require("../model/career/careerRoadmapModel");
+const Career = require("../model/career/careerModel");
 // =====================================================
 // CREATE CAREER ROADMAP
 // =====================================================

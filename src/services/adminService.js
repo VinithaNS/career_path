@@ -1,5 +1,5 @@
-const Admin = require("../model/adminModel");
-const User = require("../model/userModel");
+const Admin = require("../model/core/adminModel");
+const User = require("../model/user/userModel");
 
 // ==========================================
 // CREATE ADMIN PROFILE

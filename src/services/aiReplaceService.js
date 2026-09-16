@@ -1,4 +1,4 @@
-const AIReplace = require("../model/AIReplaceModel");
+const AIReplace = require("../model/ai/AIReplaceModel");
 
 // =====================================================
 // CREATE AI REPLACE

@@ -1,4 +1,4 @@
-const CourseVideo = require("../model/courseVideoModel");
+const CourseVideo = require("../model/core/courseVideoModel");
 
 exports.fetchVideosBySkill = async (skillId) => {
   const videos = await CourseVideo.find({

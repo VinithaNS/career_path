@@ -1,4 +1,4 @@
-const GovernmentExam = require("../model/governmentExamModel");
+const GovernmentExam = require("../model/exam/governmentExamModel");
 
 // =====================================================
 // CREATE GOVERNMENT EXAM

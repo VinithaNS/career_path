@@ -1,4 +1,4 @@
-const ExamSyllabus = require("../model/examSyllabusModel");
+const ExamSyllabus = require("../model/exam/examSyllabusModel");
 
 // =====================================================
 // CREATE EXAM SYLLABUS

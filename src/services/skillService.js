@@ -1,4 +1,4 @@
-const Skill = require("../model/skillModel");
+const Skill = require("../model/skill/skillModel");
 
 // =====================================================
 // CREATE SKILL

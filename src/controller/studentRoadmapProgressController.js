@@ -1,4 +1,4 @@
-const StudentRoadmapProgress = require("../model/studentRoadmapProgressModel");
+const StudentRoadmapProgress = require("../model/core/studentRoadmapProgressModel");
 
 // CREATE
 exports.createRoadmapProgress = async (req, res) => {

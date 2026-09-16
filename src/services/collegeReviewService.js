@@ -1,8 +1,8 @@
 // services/collegeReviewService.js
 
-const CollegeReview = require("../model/collegeReviewModel");
-const College = require("../model/collegeModel");
-const CollegeCourse = require("../model/collegeCourseModel");
+const CollegeReview = require("../model/college/collegeReviewModel");
+const College = require("../model/college/collegeModel");
+const CollegeCourse = require("../model/college/collegeCourseModel");
 const mongoose = require("mongoose");
 
 // =====================================================

@@ -1,6 +1,6 @@
-const Parent = require("../model/parentModel");
+const Parent = require("../model/user/parentModel");
 
-const User = require("../model/userModel");
+const User = require("../model/user/userModel");
 
 // ----------------------------------
 // CREATE PARENT PROFILE

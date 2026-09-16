@@ -1,6 +1,6 @@
-const Career = require("../model/careerModel");
-const College = require("../model/collegeModel");
-const GovernmentExam = require("../model/governmentExamModel");
+const Career = require("../model/career/careerModel");
+const College = require("../model/college/collegeModel");
+const GovernmentExam = require("../model/exam/governmentExamModel");
 
 const getHomeData = async (req, res) => {
   try {

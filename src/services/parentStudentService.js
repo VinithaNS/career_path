@@ -1,8 +1,8 @@
-const ParentStudent = require("../model/parentStudentModel");
+const ParentStudent = require("../model/user/parentStudentModel");
 
-const Parent = require("../model/parentModel");
+const Parent = require("../model/user/parentModel");
 
-const Student = require("../model/studentModel");
+const Student = require("../model/user/studentModel");
 
 // ----------------------------------
 // LINK STUDENT

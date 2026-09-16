@@ -1,4 +1,4 @@
-const Category = require("../model/categoryModel");
+const Category = require("../model/core/categoryModel");
 
 // CREATE CATEGORY
 

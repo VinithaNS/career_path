@@ -1,14 +1,14 @@
-const StudentProgress = require("../model/studentProgressModel");
+const StudentProgress = require("../model/core/studentProgressModel");
 
-const Student = require("../model/studentModel");
+const Student = require("../model/user/studentModel");
 
-const Career = require("../model/careerModel");
+const Career = require("../model/career/careerModel");
 
-const AssessmentAttempt = require("../model/assessmentAttemptModel");
+const AssessmentAttempt = require("../model/assessment/assessmentAttemptModel");
 
-const AssessmentResult = require("../model/assessmentResultModel");
+const AssessmentResult = require("../model/assessment/assessmentResultModel");
 
-const CareerRoadmap = require("../model/careerRoadmapModel");
+const CareerRoadmap = require("../model/career/careerRoadmapModel");
 
 // =====================================================
 // CREATE STUDENT PROGRESS
