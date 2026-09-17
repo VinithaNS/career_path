@@ -109,4 +109,11 @@ const diplomaCourseSchema = new mongoose.Schema(
   }
 );
 
-module.exports = mongoose.model("DiplomaCourse", diplomaCourseSchema);
+// Guard against "OverwriteModelError: Cannot overwrite `DiplomaCourse` model
+// once compiled." This happens when this file gets require()'d more than
+// once in the same process (e.g. via two different require paths, or a
+// barrel/index file re-requiring it, or nodemon reloading a cached module).
+// Reusing the already-compiled model instead of redefining it fixes it.
+module.exports =
+  mongoose.models.DiplomaCourse ||
+  mongoose.model("DiplomaCourse", diplomaCourseSchema);

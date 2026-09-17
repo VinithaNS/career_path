@@ -118,6 +118,8 @@ app.use(
 );
 app.use("/api/departments", require("./src/router/departmentRoutes"));
 app.use("/api", require("./src/router/courseVideoRoutes"));
+app.use("/api/tenth-streams", require("./src/router/tenthStreamRoutes"));
+app.use("/api/diploma-courses", require("./src/router/diplomaRoutes"));
 const PORT = process.env.PORT || 5000;
 const MONGO_URL = process.env.MONGO_URL;
 
