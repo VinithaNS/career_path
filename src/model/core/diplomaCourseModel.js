@@ -4,116 +4,65 @@ const diplomaCourseSchema = new mongoose.Schema(
   {
     categoryId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Category",
-      required: true
+      ref: "Category"
     },
-
     courseName: {
       type: String,
       required: true,
       trim: true
     },
-
     courseCode: {
       type: String,
       required: true,
       unique: true,
-      trim: true,
-      uppercase: true
-    },
-
-    shortDescription: {
-      type: String,
+      uppercase: true,
       trim: true
     },
-
-    description: {
+    slug: {
       type: String,
+      lowercase: true,
       trim: true
     },
-
+    stream: {
+      type: String,
+      default: "Engineering & Technology"
+    },
     duration: {
       type: String,
-      required: true,
-      trim: true
+      default: "3 Years"
     },
-
     eligibility: {
       type: String,
-      required: true,
-      trim: true
+      default: "Pass in 10th Standard (SSLC / CBSE / ICSE) with minimum 35%"
     },
-
-    admissionProcess: {
-      type: String,
-      trim: true
-    },
-
-    subjects: [
-      {
-        type: String,
-        trim: true
-      }
-    ],
-
-    skills: [
-      {
-        type: String,
-        trim: true
-      }
-    ],
-
-    careerOptions: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Career"
-      }
-    ],
-
-    colleges: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "College"
-      }
-    ],
-
-    averageSalary: {
-      type: String,
-      trim: true
-    },
-
-    jobRoles: [
-      {
-        type: String,
-        trim: true
-      }
-    ],
-
-    imageUrl: {
+    shortDescription: {
       type: String,
       default: ""
     },
-
+    description: {
+      type: String,
+      default: ""
+    },
+    skills: [{ type: String }],
+    directJobRoles: [{ type: String }],
+    lateralEntryScope: {
+      eligibleForDirectSecondYearBE: { type: Boolean, default: true },
+      degreeBranches: [{ type: String }]
+    },
+    averageSalary: {
+      type: String,
+      default: "₹2.4 - 4.5 LPA"
+    },
     displayOrder: {
       type: Number,
       default: 0
     },
-
     isActive: {
       type: Boolean,
       default: true
     }
   },
-  {
-    timestamps: true
-  }
+  { timestamps: true }
 );
 
-// Guard against "OverwriteModelError: Cannot overwrite `DiplomaCourse` model
-// once compiled." This happens when this file gets require()'d more than
-// once in the same process (e.g. via two different require paths, or a
-// barrel/index file re-requiring it, or nodemon reloading a cached module).
-// Reusing the already-compiled model instead of redefining it fixes it.
-module.exports =
-  mongoose.models.DiplomaCourse ||
-  mongoose.model("DiplomaCourse", diplomaCourseSchema);
+module.exports = mongoose.model("DiplomaCourse", diplomaCourseSchema);

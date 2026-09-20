@@ -1,9 +1,18 @@
 const mongoose = require("mongoose");
-const { Schema } = mongoose;
 
-const departmentSchema = new Schema(
+const departmentSchema = new mongoose.Schema(
   {
-    name: { type: String, required: true, trim: true, unique: true },
+    departmentName: {
+      type: String,
+      required: true,
+      trim: true
+    },
+    code: {
+      type: String,
+      required: true,
+      uppercase: true,
+      trim: true
+    },
     slug: {
       type: String,
       required: true,
@@ -11,19 +20,42 @@ const departmentSchema = new Schema(
       lowercase: true,
       trim: true
     },
-    shortCode: { type: String, trim: true },
-    tags: { type: [String], default: [] },
-    icon: { type: String, default: "default" },
-    description: { type: String, trim: true },
-    careerRoadmaps: [{ type: Schema.Types.ObjectId, ref: "CareerRoadmap" }],
-    collegeCourses: [{ type: Schema.Types.ObjectId, ref: "CollegeCourse" }],
-    degreeCourses: [{ type: Schema.Types.ObjectId, ref: "DegreeCourse" }],
-    order: { type: Number, default: 0 },
-    isActive: { type: Boolean, default: true }
+    description: {
+      type: String,
+      default: ""
+    },
+    iconUrl: {
+      type: String,
+      default: ""
+    },
+    eligibleEleventhGroups: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "EleventhGroup"
+      }
+    ],
+    degreeCoursesOffered: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "DegreeCourse"
+      }
+    ],
+    careerRoadmaps: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "CareerRoadmap"
+      }
+    ],
+    displayOrder: {
+      type: Number,
+      default: 0
+    },
+    isActive: {
+      type: Boolean,
+      default: true
+    }
   },
   { timestamps: true }
 );
-
-departmentSchema.index({ order: 1 });
 
 module.exports = mongoose.model("Department", departmentSchema);

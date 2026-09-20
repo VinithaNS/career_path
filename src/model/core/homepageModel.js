@@ -1,110 +1,42 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 
-const homePageSchema = new mongoose.Schema(
+const homepageSchema = new mongoose.Schema(
   {
-    hero: {
-      badge: {
-        type: String,
-        required: true
-      },
-
-      titleLine1: {
-        type: String,
-        required: true
-      },
-
-      titleLine2: {
-        type: String,
-        required: true
-      },
-
-      highlightedText: {
-        type: String,
-        required: true
-      },
-
-      description: {
-        type: String,
-        required: true
-      },
-
-      image: {
-        type: String,
-        default: ""
-      },
-
-      primaryButton: {
-        text: {
-          type: String,
-          required: true
-        },
-
-        link: {
-          type: String,
-          required: true
-        }
-      },
-
-      secondaryButton: {
-        text: {
-          type: String,
-          required: true
-        },
-
-        link: {
-          type: String,
-          required: true
-        }
-      }
+    heroHeadline: {
+      type: String,
+      default: "Discover, Learn & Build Your Bright Future"
     },
-
-    stats: [
+    heroTagline: {
+      type: String,
+      default:
+        "Explore 500+ career options, find the right courses, top colleges, prepare for exams and build the skills you need to succeed."
+    },
+    statsOverride: {
+      careers: { type: Number, default: 0 },
+      colleges: { type: Number, default: 0 },
+      exams: { type: Number, default: 0 },
+      learningPaths: { type: Number, default: 0 }
+    },
+    featuredEleventhGroups: [
       {
-        value: {
-          type: String,
-          required: true
-        },
-
-        label: {
-          type: String,
-          required: true
-        },
-
-        icon: {
-          type: String,
-          default: ""
-        }
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "EleventhGroup"
       }
     ],
-
-    quickLinks: [
+    featuredDiplomaCourses: [
       {
-        title: {
-          type: String,
-          required: true
-        },
-
-        subtitle: {
-          type: String,
-          required: true
-        },
-
-        icon: {
-          type: String,
-          default: ""
-        },
-
-        link: {
-          type: String,
-          required: true
-        }
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "DiplomaCourse"
+      }
+    ],
+    featuredDepartments: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Department"
       }
     ]
   },
-
-  {
-    timestamps: true
-  }
+  { timestamps: true }
 );
 
-module.exports = mongoose.model("HomePage", homePageSchema);
+export default mongoose.model("Homepage", homepageSchema);

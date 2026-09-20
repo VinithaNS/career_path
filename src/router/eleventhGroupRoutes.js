@@ -1,57 +1,15 @@
 const express = require("express");
-
 const router = express.Router();
-
 const {
-  createEleventhGroup,
-  getAllEleventhGroups,
-  getActiveEleventhGroups,
-  getEleventhGroupById,
-  getGroupsByCategory,
-  updateEleventhGroup,
-  deleteEleventhGroup
+  getActiveGroups,
+  getAllGroups,
+  getGroupById,
+  createGroup
 } = require("../controller/eleventhGroupController");
 
-// =====================================================
-// CREATE
-// =====================================================
-
-router.post("/create", createEleventhGroup);
-
-// =====================================================
-// GET ALL
-// =====================================================
-
-router.get("/all", getAllEleventhGroups);
-
-// =====================================================
-// GET ACTIVE
-// =====================================================
-
-router.get("/active", getActiveEleventhGroups);
-
-// =====================================================
-// GET BY CATEGORY
-// =====================================================
-
-router.get("/category/:categoryId", getGroupsByCategory);
-
-// =====================================================
-// GET BY ID
-// =====================================================
-
-router.get("/:id", getEleventhGroupById);
-
-// =====================================================
-// UPDATE
-// =====================================================
-
-router.put("/update/:id", updateEleventhGroup);
-
-// =====================================================
-// DELETE
-// =====================================================
-
-router.delete("/delete/:id", deleteEleventhGroup);
+router.get("/active", getActiveGroups);
+router.get("/all", getAllGroups);
+router.post("/create", createGroup);
+router.get("/:id", getGroupById);
 
 module.exports = router;

@@ -1,51 +1,16 @@
 const express = require("express");
-
 const router = express.Router();
-
 const {
-  createCareerRoadmap,
-  getAllCareerRoadmaps,
-  getCareerRoadmapById,
-  getRoadmapByCareer,
-  updateCareerRoadmap,
-  deleteCareerRoadmap
+  getAllRoadmaps,
+  getRoadmapById,
+  getRoadmapByTitle,
+  createRoadmap
 } = require("../controller/careerRoadmapController");
 
-// =====================================================
-// CREATE CAREER ROADMAP
-// =====================================================
-
-router.post("/create", createCareerRoadmap);
-
-// =====================================================
-// GET ALL CAREER ROADMAPS
-// =====================================================
-
-router.get("/all", getAllCareerRoadmaps);
-
-// =====================================================
-// GET ROADMAP BY CAREER ID
-// IMPORTANT: Keep this BEFORE /:id
-// =====================================================
-
-router.get("/career/:careerId", getRoadmapByCareer);
-
-// =====================================================
-// GET ROADMAP BY ID
-// =====================================================
-
-router.get("/:id", getCareerRoadmapById);
-
-// =====================================================
-// UPDATE CAREER ROADMAP
-// =====================================================
-
-router.put("/update/:id", updateCareerRoadmap);
-
-// =====================================================
-// DELETE CAREER ROADMAP
-// =====================================================
-
-router.delete("/delete/:id", deleteCareerRoadmap);
+// Static and Named resolver routes must precede the wildcard /:id
+router.get("/all", getAllRoadmaps);
+router.get("/by-title", getRoadmapByTitle);
+router.post("/create", createRoadmap);
+router.get("/:id", getRoadmapById);
 
 module.exports = router;

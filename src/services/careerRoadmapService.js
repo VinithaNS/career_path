@@ -1,131 +1,40 @@
 const CareerRoadmap = require("../model/career/careerRoadmapModel");
-const Career = require("../model/career/careerModel");
-// =====================================================
-// CREATE CAREER ROADMAP
-// =====================================================
 
-const createCareerRoadmap = async (data) => {
-  // Check whether Career exists
+const getAllRoadmaps = async () => {
+  return await CareerRoadmap.find({ isActive: true }).sort({ createdAt: -1 });
+};
 
-  const career = await Career.findById(data.careerId);
+const getRoadmapById = async (id) => {
+  return await CareerRoadmap.findById(id);
+};
 
-  if (!career) {
-    throw new Error("Career not found");
-  }
+const getRoadmapByTitle = async (title) => {
+  const cleanTitle = title.replace(/[^a-zA-Z0-9 ]/g, "").trim();
+  const queryRegex = new RegExp(
+    cleanTitle.split(" ").slice(0, 2).join(".*"),
+    "i"
+  );
 
-  // Check duplicate roadmap for same career
-  const existingRoadmap = await CareerRoadmap.findOne({
-    careerId: data.careerId
+  let roadmap = await CareerRoadmap.findOne({
+    $or: [
+      { title: new RegExp(`^${title.trim()}$`, "i") },
+      { title: queryRegex }
+    ]
   });
 
-  if (existingRoadmap) {
-    throw new Error("Career roadmap already exists for this career");
-  }
-
-  // Create roadmap
-  const roadmap = await CareerRoadmap.create(data);
-
-  return roadmap;
-};
-
-// =====================================================
-// GET ALL CAREER ROADMAPS
-// =====================================================
-
-const getAllCareerRoadmaps = async () => {
-  const roadmaps = await CareerRoadmap.find({
-    isActive: true
-  })
-    .populate("careerId")
-    .sort({
-      createdAt: -1
-    });
-
-  return roadmaps;
-};
-
-// =====================================================
-// GET CAREER ROADMAP BY ID
-// =====================================================
-
-const getCareerRoadmapById = async (roadmapId) => {
-  const roadmap = await CareerRoadmap.findById(roadmapId).populate("careerId");
-
   if (!roadmap) {
-    throw new Error("Career roadmap not found");
+    roadmap = await CareerRoadmap.findOne({ isActive: true });
   }
-
   return roadmap;
 };
 
-// =====================================================
-// GET ROADMAP BY CAREER
-// =====================================================
-
-const getRoadmapByCareer = async (careerId) => {
-  const roadmap = await CareerRoadmap.findOne({
-    careerId: careerId,
-    isActive: true
-  }).populate("careerId");
-
-  if (!roadmap) {
-    throw new Error("Career roadmap not found for this career");
-  }
-
-  return roadmap;
+const createRoadmap = async (data) => {
+  return await CareerRoadmap.create(data);
 };
-
-// =====================================================
-// UPDATE CAREER ROADMAP
-// =====================================================
-
-const updateCareerRoadmap = async (roadmapId, data) => {
-  const roadmap = await CareerRoadmap.findByIdAndUpdate(
-    roadmapId,
-    {
-      $set: data
-    },
-    {
-      new: true,
-      runValidators: true
-    }
-  ).populate("careerId");
-
-  if (!roadmap) {
-    throw new Error("Career roadmap not found");
-  }
-
-  return roadmap;
-};
-
-// =====================================================
-// DELETE CAREER ROADMAP
-// =====================================================
-
-const deleteCareerRoadmap = async (roadmapId) => {
-  const roadmap = await CareerRoadmap.findByIdAndDelete(roadmapId);
-
-  if (!roadmap) {
-    throw new Error("Career roadmap not found");
-  }
-
-  return roadmap;
-};
-
-// =====================================================
-// EXPORT
-// =====================================================
 
 module.exports = {
-  createCareerRoadmap,
-
-  getAllCareerRoadmaps,
-
-  getCareerRoadmapById,
-
-  getRoadmapByCareer,
-
-  updateCareerRoadmap,
-
-  deleteCareerRoadmap
+  getAllRoadmaps,
+  getRoadmapById,
+  getRoadmapByTitle,
+  createRoadmap
 };

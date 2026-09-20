@@ -78,7 +78,7 @@ app.use(
   "/api/ai-recommendations",
   require("./src/router/aiRecommendationRoutes")
 );
-app.use("/api/ai-conversations", require("./src/router/aiConversationRoutes"));
+app.use("/api/ai-conversation", require("./src/router/aiConversationRoutes"));
 app.use("/api/ai-support", require("./src/router/aiSupportRoutes"));
 app.use("/api/ai-replace", require("./src/router/aiReplaceRoutes"));
 app.use("/api/student-progress", require("./src/router/studentProgressRoutes"));

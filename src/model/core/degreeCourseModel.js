@@ -2,124 +2,60 @@ const mongoose = require("mongoose");
 
 const degreeCourseSchema = new mongoose.Schema(
   {
-    categoryId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Category",
-      required: true
-    },
-
     courseName: {
       type: String,
       required: true,
       trim: true
     },
-
     courseCode: {
       type: String,
       required: true,
-      unique: true,
-      trim: true,
-      uppercase: true
-    },
-
-    shortDescription: {
-      type: String,
+      uppercase: true,
       trim: true
     },
-
-    description: {
+    slug: {
       type: String,
+      lowercase: true,
       trim: true
     },
-
     degreeType: {
       type: String,
-      enum: ["UG", "PG", "Integrated"],
       default: "UG"
     },
-
+    stream: {
+      type: String,
+      default: "Engineering"
+    },
     duration: {
       type: String,
-      required: true,
-      trim: true
+      default: "4 Years"
     },
-
-    eligibility: {
-      type: String,
-      required: true,
-      trim: true
-    },
-
-    admissionProcess: {
-      type: String,
-      trim: true
-    },
-
-    subjects: [
-      {
-        type: String,
-        trim: true
-      }
-    ],
-
-    skills: [
-      {
-        type: String,
-        trim: true
-      }
-    ],
-
-    careerOptions: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Career"
-      }
-    ],
-
-    colleges: [
-      {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "College"
-      }
-    ],
-
     averageSalary: {
       type: String,
-      trim: true
+      default: "₹3 - 8 LPA"
     },
-
-    jobRoles: [
-      {
-        type: String,
-        trim: true
-      }
-    ],
-
-    higherStudies: [
-      {
-        type: String,
-        trim: true
-      }
-    ],
-
-    imageUrl: {
+    description: {
       type: String,
       default: ""
     },
-
-    displayOrder: {
-      type: Number,
-      default: 0
+    eligibility: {
+      type: String,
+      default: "12th standard pass with relevant subject cutoff."
     },
-
+    admissionProcess: {
+      type: String,
+      default: "Merit-based university counseling & entrance tests."
+    },
+    subjects: [{ type: String }],
+    skills: [{ type: String }],
+    jobRoles: [{ type: String }],
+    higherStudies: [{ type: String }],
     isActive: {
       type: Boolean,
       default: true
     }
   },
-  {
-    timestamps: true
-  }
+  { timestamps: true }
 );
 
 module.exports = mongoose.model("DegreeCourse", degreeCourseSchema);
