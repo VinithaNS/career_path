@@ -17,7 +17,7 @@ const getRoadmapById = async (req, res) => {
     if (!roadmap) {
       return res
         .status(404)
-        .json({ success: false, message: "Career roadmap not found" });
+        .json({ success: false, message: "Roadmap not found" });
     }
     return res.status(200).json({ success: true, data: roadmap });
   } catch (error) {
@@ -34,6 +34,14 @@ const getRoadmapByTitle = async (req, res) => {
         .json({ success: false, message: "Title query is required" });
     }
     const roadmap = await careerRoadmapService.getRoadmapByTitle(title);
+    if (!roadmap) {
+      return res
+        .status(404)
+        .json({
+          success: false,
+          message: `Roadmap matching '${title}' not found`
+        });
+    }
     return res.status(200).json({ success: true, data: roadmap });
   } catch (error) {
     return res.status(500).json({ success: false, message: error.message });
@@ -49,9 +57,29 @@ const createRoadmap = async (req, res) => {
   }
 };
 
+const updateRoadmapStep = async (req, res) => {
+  try {
+    const { id, stepId } = req.params;
+    const roadmap = await careerRoadmapService.updateRoadmapStep(
+      id,
+      stepId,
+      req.body
+    );
+    if (!roadmap) {
+      return res
+        .status(404)
+        .json({ success: false, message: "Roadmap or Step not found" });
+    }
+    return res.status(200).json({ success: true, data: roadmap });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+};
+
 module.exports = {
   getAllRoadmaps,
   getRoadmapById,
   getRoadmapByTitle,
-  createRoadmap
+  createRoadmap,
+  updateRoadmapStep
 };

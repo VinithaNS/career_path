@@ -1,42 +1,69 @@
 const mongoose = require("mongoose");
 
-const stepSchema = new mongoose.Schema({
-  stepNumber: { type: Number, required: true },
-  title: { type: String, required: true },
-  description: { type: String, default: "" },
-  skills: [{ type: String }],
-  resources: [{ type: String }]
-});
-
-const careerRoadmapSchema = new mongoose.Schema(
+// Step Sub-Schema
+const roadmapStepSchema = new mongoose.Schema(
   {
+    stepNumber: {
+      type: Number,
+      required: true
+    },
     title: {
       type: String,
       required: true,
       trim: true
     },
-    slug: {
+    description: {
       type: String,
-      lowercase: true,
       trim: true
     },
-    shortDescription: {
+    topics: {
+      type: [String],
+      default: []
+    },
+    tools: {
+      type: [String],
+      default: []
+    },
+    practicePlatforms: {
+      type: [String],
+      default: []
+    },
+    miniProject: {
       type: String,
       default: ""
+    },
+    estimatedDuration: {
+      type: String,
+      default: "3 - 4 Weeks"
+    }
+  },
+  { _id: true }
+);
+
+// Main Career Roadmap Schema
+const careerRoadmapSchema = new mongoose.Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+      unique: true,
+      trim: true
+    },
+    slug: {
+      type: String,
+      trim: true,
+      lowercase: true
     },
     description: {
       type: String,
-      default: ""
+      trim: true
     },
-    duration: {
-      type: String,
-      default: "12-18 Months"
-    },
-    steps: [stepSchema],
-    career: {
+    careerId: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Career"
+      ref: "Career",
+      default: null
     },
+    steps: [roadmapStepSchema],
     isActive: {
       type: Boolean,
       default: true

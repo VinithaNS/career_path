@@ -10,7 +10,7 @@ const getRoadmapById = async (id) => {
 
 const getRoadmapByTitle = async (title) => {
   const cleanTitle = title.replace(/[^a-zA-Z0-9 ]/g, "").trim();
-  const queryRegex = new RegExp(
+  const searchRegex = new RegExp(
     cleanTitle.split(" ").slice(0, 2).join(".*"),
     "i"
   );
@@ -18,7 +18,7 @@ const getRoadmapByTitle = async (title) => {
   let roadmap = await CareerRoadmap.findOne({
     $or: [
       { title: new RegExp(`^${title.trim()}$`, "i") },
-      { title: queryRegex }
+      { title: searchRegex }
     ]
   });
 
@@ -32,9 +32,28 @@ const createRoadmap = async (data) => {
   return await CareerRoadmap.create(data);
 };
 
+const updateRoadmapStep = async (id, stepId, stepData) => {
+  return await CareerRoadmap.findOneAndUpdate(
+    { _id: id, "steps._id": stepId },
+    {
+      $set: {
+        "steps.$.title": stepData.title,
+        "steps.$.description": stepData.description,
+        "steps.$.topics": stepData.topics,
+        "steps.$.tools": stepData.tools,
+        "steps.$.practicePlatforms": stepData.practicePlatforms,
+        "steps.$.miniProject": stepData.miniProject,
+        "steps.$.estimatedDuration": stepData.estimatedDuration
+      }
+    },
+    { new: true }
+  );
+};
+
 module.exports = {
   getAllRoadmaps,
   getRoadmapById,
   getRoadmapByTitle,
-  createRoadmap
+  createRoadmap,
+  updateRoadmapStep
 };
