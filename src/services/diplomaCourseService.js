@@ -1,36 +1,19 @@
 const DiplomaCourse = require("../model/core/diplomaCourseModel");
 
-const getAllDiplomaCourses = async (query = {}) => {
-  const filter = {};
-  if (query.isActive !== undefined) {
-    filter.isActive = query.isActive === "true" || query.isActive === true;
-  }
-  return await DiplomaCourse.find(filter)
-    .populate({ path: "categoryId", select: "name", strictPopulate: false })
-    .sort({ displayOrder: 1, createdAt: -1 });
-};
-
-const getActiveDiplomaCourses = async () => {
-  return await DiplomaCourse.find({ isActive: true })
-    .populate({ path: "categoryId", select: "name", strictPopulate: false })
-    .sort({ displayOrder: 1, courseName: 1 });
+const getAllDiplomaCourses = async () => {
+  return await DiplomaCourse.find({ isActive: true }).sort({ courseName: 1 });
 };
 
 const getDiplomaCourseById = async (id) => {
-  return await DiplomaCourse.findById(id).populate({
-    path: "categoryId",
-    select: "name",
-    strictPopulate: false
-  });
+  return await DiplomaCourse.findById(id);
 };
 
-const createDiplomaCourse = async (data) => {
-  return await DiplomaCourse.create(data);
+const createDiplomaCourse = async (diplomaData) => {
+  return await DiplomaCourse.create(diplomaData);
 };
 
 module.exports = {
   getAllDiplomaCourses,
-  getActiveDiplomaCourses,
   getDiplomaCourseById,
   createDiplomaCourse
 };

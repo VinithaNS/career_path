@@ -1,11 +1,17 @@
 const express = require("express");
 const router = express.Router();
-const degreeCourseController = require("../controller/degreeCourseController");
+const {
+  getActiveDegreeCourses,
+  getAllDegreeCourses,
+  getCourseByName,
+  getDegreeCourseById,
+  createDegreeCourse
+} = require("../controller/degreeCourseController");
 
-router.get("/active", degreeCourseController.getActiveDegreeCourses);
-router.get("/all", degreeCourseController.getAllDegreeCourses);
-router.get("/by-name", degreeCourseController.getCourseByName); // <-- MUST be before /:id
-router.post("/create", degreeCourseController.createDegreeCourse);
-router.get("/:id", degreeCourseController.getDegreeCourseById);
+router.get("/active", getActiveDegreeCourses);
+router.get("/all", getAllDegreeCourses);
+router.get("/by-name", getCourseByName);
+router.post("/create", createDegreeCourse);
+router.get("/:id", getDegreeCourseById);
 
 module.exports = router;

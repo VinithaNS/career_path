@@ -45,14 +45,12 @@ const getCourseByName = async (req, res) => {
         .json({ success: false, message: "Course name is required" });
     }
     const course = await degreeCourseService.getCourseByName(name);
-
     if (!course) {
       return res.status(404).json({
         success: false,
-        message: `No course matching '${name}' found.`
+        message: `No course matching '${name}' found`
       });
     }
-
     return res.status(200).json({ success: true, data: course });
   } catch (error) {
     return res.status(500).json({ success: false, message: error.message });

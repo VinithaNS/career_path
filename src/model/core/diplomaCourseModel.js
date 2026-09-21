@@ -2,26 +2,16 @@ const mongoose = require("mongoose");
 
 const diplomaCourseSchema = new mongoose.Schema(
   {
-    categoryId: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "Category"
-    },
     courseName: {
       type: String,
       required: true,
-      trim: true
+      unique: true,
+      trim: true // e.g. "Diploma in Mechanical Engineering"
     },
     courseCode: {
       type: String,
       required: true,
-      unique: true,
-      uppercase: true,
-      trim: true
-    },
-    slug: {
-      type: String,
-      lowercase: true,
-      trim: true
+      uppercase: true // e.g. "DME"
     },
     stream: {
       type: String,
@@ -29,33 +19,41 @@ const diplomaCourseSchema = new mongoose.Schema(
     },
     duration: {
       type: String,
-      default: "3 Years"
-    },
-    eligibility: {
-      type: String,
-      default: "Pass in 10th Standard (SSLC / CBSE / ICSE) with minimum 35%"
-    },
-    shortDescription: {
-      type: String,
-      default: ""
+      default: "3 Years (6 Semesters)"
     },
     description: {
       type: String,
-      default: ""
+      required: true
     },
-    skills: [{ type: String }],
-    directJobRoles: [{ type: String }],
-    lateralEntryScope: {
-      eligibleForDirectSecondYearBE: { type: Boolean, default: true },
-      degreeBranches: [{ type: String }]
+    eligibility: {
+      type: String,
+      default: "Pass in 10th Standard (SSLC) with Mathematics and Science."
     },
     averageSalary: {
       type: String,
-      default: "₹2.4 - 4.5 LPA"
+      default: "₹2.5 - 4.5 LPA"
     },
-    displayOrder: {
-      type: Number,
-      default: 0
+    skills: {
+      type: [String], // e.g. ["AutoCAD", "CNC Programming", "Hydraulics", "Quality Control"]
+      default: []
+    },
+    directJobRoles: {
+      type: [String], // e.g. ["Junior Mechanical Engineer", "CAD Drafter", "CNC Operator", "Maintenance Technician"]
+      default: []
+    },
+    lateralEntryScope: {
+      isEligibleForEngineering: {
+        type: Boolean,
+        default: true
+      },
+      targetSemester: {
+        type: String,
+        default: "Direct Entry to 3rd Semester (2nd Year B.E/B.Tech)"
+      },
+      degreeBranches: {
+        type: [String], // e.g. ["B.E Mechanical Engineering", "B.Tech Mechatronics", "B.E Automobile Engineering"]
+        default: []
+      }
     },
     isActive: {
       type: Boolean,

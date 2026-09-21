@@ -28,8 +28,8 @@ const getRoadmapByTitle = async (title) => {
   return roadmap;
 };
 
-const createRoadmap = async (data) => {
-  return await CareerRoadmap.create(data);
+const createRoadmap = async (roadmapData) => {
+  return await CareerRoadmap.create(roadmapData);
 };
 
 const updateRoadmapStep = async (id, stepId, stepData) => {

@@ -2,21 +2,10 @@ const diplomaCourseService = require("../services/diplomaCourseService");
 
 const getAllDiplomaCourses = async (req, res) => {
   try {
-    const courses = await diplomaCourseService.getAllDiplomaCourses(req.query);
+    const diplomas = await diplomaCourseService.getAllDiplomaCourses();
     return res
       .status(200)
-      .json({ success: true, count: courses.length, data: courses });
-  } catch (error) {
-    return res.status(500).json({ success: false, message: error.message });
-  }
-};
-
-const getActiveDiplomaCourses = async (req, res) => {
-  try {
-    const courses = await diplomaCourseService.getActiveDiplomaCourses();
-    return res
-      .status(200)
-      .json({ success: true, count: courses.length, data: courses });
+      .json({ success: true, count: diplomas.length, data: diplomas });
   } catch (error) {
     return res.status(500).json({ success: false, message: error.message });
   }
@@ -24,15 +13,15 @@ const getActiveDiplomaCourses = async (req, res) => {
 
 const getDiplomaCourseById = async (req, res) => {
   try {
-    const course = await diplomaCourseService.getDiplomaCourseById(
+    const diploma = await diplomaCourseService.getDiplomaCourseById(
       req.params.id
     );
-    if (!course) {
+    if (!diploma) {
       return res
         .status(404)
-        .json({ success: false, message: "Diploma course not found" });
+        .json({ success: false, message: "Diploma Course not found" });
     }
-    return res.status(200).json({ success: true, data: course });
+    return res.status(200).json({ success: true, data: diploma });
   } catch (error) {
     return res.status(500).json({ success: false, message: error.message });
   }
@@ -40,8 +29,8 @@ const getDiplomaCourseById = async (req, res) => {
 
 const createDiplomaCourse = async (req, res) => {
   try {
-    const course = await diplomaCourseService.createDiplomaCourse(req.body);
-    return res.status(201).json({ success: true, data: course });
+    const diploma = await diplomaCourseService.createDiplomaCourse(req.body);
+    return res.status(201).json({ success: true, data: diploma });
   } catch (error) {
     return res.status(400).json({ success: false, message: error.message });
   }
@@ -49,7 +38,6 @@ const createDiplomaCourse = async (req, res) => {
 
 module.exports = {
   getAllDiplomaCourses,
-  getActiveDiplomaCourses,
   getDiplomaCourseById,
   createDiplomaCourse
 };

@@ -1,17 +1,6 @@
 const eleventhGroupService = require("../services/eleventhGroupService");
 
-const getActiveGroups = async (req, res) => {
-  try {
-    const groups = await eleventhGroupService.getActiveEleventhGroups();
-    return res
-      .status(200)
-      .json({ success: true, count: groups.length, data: groups });
-  } catch (error) {
-    return res.status(500).json({ success: false, message: error.message });
-  }
-};
-
-const getAllGroups = async (req, res) => {
+const getAllEleventhGroups = async (req, res) => {
   try {
     const groups = await eleventhGroupService.getAllEleventhGroups();
     return res
@@ -22,7 +11,7 @@ const getAllGroups = async (req, res) => {
   }
 };
 
-const getGroupById = async (req, res) => {
+const getEleventhGroupById = async (req, res) => {
   try {
     const group = await eleventhGroupService.getEleventhGroupById(
       req.params.id
@@ -30,7 +19,7 @@ const getGroupById = async (req, res) => {
     if (!group) {
       return res
         .status(404)
-        .json({ success: false, message: "11th stream not found" });
+        .json({ success: false, message: "11th Grade Group not found" });
     }
     return res.status(200).json({ success: true, data: group });
   } catch (error) {
@@ -38,7 +27,7 @@ const getGroupById = async (req, res) => {
   }
 };
 
-const createGroup = async (req, res) => {
+const createEleventhGroup = async (req, res) => {
   try {
     const group = await eleventhGroupService.createEleventhGroup(req.body);
     return res.status(201).json({ success: true, data: group });
@@ -48,8 +37,7 @@ const createGroup = async (req, res) => {
 };
 
 module.exports = {
-  getActiveGroups,
-  getAllGroups,
-  getGroupById,
-  createGroup
+  getAllEleventhGroups,
+  getEleventhGroupById,
+  createEleventhGroup
 };

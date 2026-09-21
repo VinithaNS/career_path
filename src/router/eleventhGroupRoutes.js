@@ -1,15 +1,14 @@
 const express = require("express");
 const router = express.Router();
 const {
-  getActiveGroups,
-  getAllGroups,
-  getGroupById,
-  createGroup
+  getAllEleventhGroups,
+  getEleventhGroupById,
+  createEleventhGroup
 } = require("../controller/eleventhGroupController");
 
-router.get("/active", getActiveGroups);
-router.get("/all", getAllGroups);
-router.post("/create", createGroup);
-router.get("/:id", getGroupById);
+router.get("/active", getAllEleventhGroups);
+router.get("/all", getAllEleventhGroups);
+router.post("/create", createEleventhGroup);
+router.get("/:id", getEleventhGroupById);
 
 module.exports = router;

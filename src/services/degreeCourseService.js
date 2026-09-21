@@ -12,7 +12,6 @@ const getDegreeCourseById = async (id) => {
   return await DegreeCourse.findById(id);
 };
 
-// Fuzzy matcher for name resolver
 const getCourseByName = async (name) => {
   const cleanName = name.replace(/[^a-zA-Z0-9 ]/g, "").trim();
   const searchRegex = new RegExp(
@@ -28,15 +27,14 @@ const getCourseByName = async (name) => {
     ]
   });
 
-  // Fallback if no exact string match is found
   if (!course) {
     course = await DegreeCourse.findOne({ isActive: true });
   }
   return course;
 };
 
-const createDegreeCourse = async (data) => {
-  return await DegreeCourse.create(data);
+const createDegreeCourse = async (courseData) => {
+  return await DegreeCourse.create(courseData);
 };
 
 module.exports = {
